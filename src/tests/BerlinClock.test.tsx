@@ -49,4 +49,18 @@ describe('BerlinClock component (minimal)', () => {
     expect(lamp.classList.contains('off')).toBe(true);
     expect(getByText(/Current Time:/).textContent).toContain('12:00:59');
   });
+
+  it('renders 5-hour and single-hour lamps for a given time', () => {
+    const { getByTestId } = renderBerlinClockAt('2026-06-17T13:00:00');
+
+    expect(getByTestId('five-hour-0').classList.contains('on')).toBe(true);
+    expect(getByTestId('five-hour-1').classList.contains('on')).toBe(true);
+    expect(getByTestId('five-hour-2').classList.contains('off')).toBe(true);
+    expect(getByTestId('five-hour-3').classList.contains('off')).toBe(true);
+
+    expect(getByTestId('single-hour-0').classList.contains('on')).toBe(true);
+    expect(getByTestId('single-hour-1').classList.contains('on')).toBe(true);
+    expect(getByTestId('single-hour-2').classList.contains('on')).toBe(true);
+    expect(getByTestId('single-hour-3').classList.contains('off')).toBe(true);
+  });
 });
