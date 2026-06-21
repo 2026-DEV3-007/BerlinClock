@@ -19,4 +19,34 @@ describe('BerlinClock component (minimal)', () => {
 
     expect(getByText(/Current Time:/).textContent).toContain('01:02:05');
   });
+  
+  it('uses the correct aria-label for the seconds lamp on', () => {
+    const { getByLabelText } = renderBerlinClockAt('2026-06-17T12:00:58');
+    const lamp = getByLabelText(/seconds lamp 0 on/i);
+
+    expect(lamp.getAttribute('aria-label')).toBe('seconds lamp 0 on');
+  });
+
+  it('uses the correct aria-label for the seconds lamp off', () => {
+    const { getByLabelText } = renderBerlinClockAt('2026-06-17T12:00:57');
+    const lamp = getByLabelText(/seconds lamp 0 off/i);
+
+    expect(lamp.getAttribute('aria-label')).toBe('seconds lamp 0 off');
+  });
+
+  it('shows an illuminated circle for even seconds', () => {
+    const { getByLabelText, getByText } = renderBerlinClockAt('2026-06-17T12:00:58');
+    const lamp = getByLabelText(/seconds lamp/i);
+
+    expect(lamp.classList.contains('on')).toBe(true);
+    expect(getByText(/Current Time:/).textContent).toContain('12:00:58');
+  });
+
+  it('shows a dark circle for odd seconds', () => {
+    const { getByLabelText, getByText } = renderBerlinClockAt('2026-06-17T12:00:59');
+    const lamp = getByLabelText(/seconds lamp/i);
+
+    expect(lamp.classList.contains('off')).toBe(true);
+    expect(getByText(/Current Time:/).textContent).toContain('12:00:59');
+  });
 });
