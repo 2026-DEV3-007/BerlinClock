@@ -63,4 +63,29 @@ describe('BerlinClock component (minimal)', () => {
     expect(getByTestId('single-hour-2').classList.contains('on')).toBe(true);
     expect(getByTestId('single-hour-3').classList.contains('off')).toBe(true);
   });
+
+  it('renders 5-minute and single-minute lamps for a given time', () => {
+    const { getByTestId } = renderBerlinClockAt('2026-06-17T13:17:00');
+
+    expect(getByTestId('five-minute-0').classList.contains('on')).toBe(true);
+    expect(getByTestId('five-minute-1').classList.contains('on')).toBe(true);
+    expect(getByTestId('five-minute-2').classList.contains('on')).toBe(true);
+    expect(getByTestId('five-minute-3').classList.contains('off')).toBe(true);
+    expect(getByTestId('five-minute-4').classList.contains('off')).toBe(true);
+
+    expect(getByTestId('single-minute-0').classList.contains('on')).toBe(true);
+    expect(getByTestId('single-minute-1').classList.contains('on')).toBe(true);
+    expect(getByTestId('single-minute-2').classList.contains('off')).toBe(true);
+    expect(getByTestId('single-minute-3').classList.contains('off')).toBe(true);
+  });
+
+  it('renders quarter-minute markers only at the 3rd, 6th, and 9th five-minute lamps', () => {
+    const { getByTestId } = renderBerlinClockAt('2026-06-17T13:17:00');
+
+    expect(getByTestId('five-minute-2').classList.contains('quarter')).toBe(true);
+    expect(getByTestId('five-minute-5').classList.contains('quarter')).toBe(true);
+    expect(getByTestId('five-minute-8').classList.contains('quarter')).toBe(true);
+    expect(getByTestId('five-minute-3').classList.contains('quarter')).toBe(false);
+    expect(getByTestId('five-minute-4').classList.contains('quarter')).toBe(false);
+  });
 });
