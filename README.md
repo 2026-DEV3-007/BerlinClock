@@ -18,6 +18,8 @@ The main tools and dependencies utilized in this project include:
 
 | Tool / Library            | Version   | Category    | Description                                |
 | :------------------------ | :-------- | :---------- | :----------------------------------------- |
+| **Node.js**               | `v22.12.0`| Environment | JavaScript runtime environment             |
+| **npm**                   | `10.9.0`  | Management  | Node Package Manager for dependencies      |
 | **React**                 | `^19.2.6` | Runtime     | Core UI library                            |
 | **React DOM**             | `^19.2.6` | Runtime     | Render engine for the browser DOM          |
 | **TypeScript**            | `~6.0.2`  | Development | Static type checking                       |
@@ -55,3 +57,14 @@ Type any standard target timestamp sequence using the HH:mm:ss syntax format (e.
 The rows of colored blocks will instantly recompute their structural patterns to visually show your custom input time!
 
 Uncheck the box at any time to seamlessly transition back to the current live clock.
+
+How to run the application:-
+
+1) Install Visual Studio Code, Node(v22.12.0) and git
+2) Clone the application using git and open in Visual Studio Code
+3) In Visual Studio Code open terminal and run following commands
+   a) npm i
+   b) npm run dev
+4) Copy the URL given in the terminal after running above command and paste it in browser the application will start running
+5) To run test cases run command - npm run test. It will show the test coverage and will create coverage folder which will contain the report.
+6) To run mutation test run command - npm run mutate. It will show the mutation report by creating a reports folder in the application where it will have the report ready.
